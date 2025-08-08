@@ -1,11 +1,14 @@
 
 # LeetCode
 
- 직접 풀이 후 해설 / 시간복잡도 정리 권장  
+- 직접 풀이 후 해설 / 시간복잡도 정리
+- 이틀에 3문제 목표
+- [Top Interview 150](https://leetcode.com/list/xi4ci4ig/) 병행
+- Python, Java 등 언어별로 풀이 저장 가능하도록 디렉토리 구성 (`/python/`, `/java/` 등)
 
 <br>
 
-## 📂 주제별 기본 문제
+## 📌 주제별 기본 문제
 
 | Topic | No | Title | Difficulty | Remarks |
 |-------|----|-------|------------|---------|
@@ -39,11 +42,11 @@
 
 <br>
 
-## 📂 면접에서 자주 출제되는 문제
+## 📌 면접에서 자주 출제되는 문제
 
 | Topic | No | Title | Difficulty | Remarks |
 |-------|----|-------|------------|---------|
-| Sliding Window |[#3](https://leetcode.com/problems/longest-substring-without-repeating-characters/) | Longest Substring Without Repeating Characters | Medium |
+| Sliding Window | [#3](https://leetcode.com/problems/longest-substring-without-repeating-characters/) | Longest Substring Without Repeating Characters | Medium |
 | | [#76](https://leetcode.com/problems/minimum-window-substring/) | Minimum Window Substring | Hard |
 | | [#438](https://leetcode.com/problems/find-all-anagrams-in-a-string/) | Find All Anagrams in a String | Medium |
 | Two Pointers | [#15](https://leetcode.com/problems/3sum/) | 3Sum | Medium |
@@ -75,9 +78,4 @@
 | | [#1143](https://leetcode.com/problems/longest-common-subsequence/) | Longest Common Subsequence | Medium |
 | | [#5](https://leetcode.com/problems/longest-palindromic-substring/) | Longest Palindromic Substring | Medium |
 
-<br>
 
-## 📌 참고
-- 문제 풀이 후 복습 노트를 작성하는 것을 추천합니다.  
-- [Top Interview 150](https://leetcode.com/list/xi4ci4ig/) 또는 [NeetCode Roadmap](https://neetcode.io/) 병행도 유효합니다.  
-- Python, Java 등 언어별로 풀이 저장 가능하도록 디렉토리 구성 추천 (`/python/`, `/java/` 등)
