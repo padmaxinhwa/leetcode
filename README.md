@@ -1,10 +1,120 @@
 
 # LeetCode
 
-- 직접 풀이 후 해설 / 시간복잡도 정리
-- 이틀에 3문제 목표
+- 주석 자세히 / 시간복잡도 정리
+- 이틀에 3문제 목표 🚀
 - [Top Interview 150](https://leetcode.com/list/xi4ci4ig/) 병행
 - Python, Java 등 언어별로 풀이 저장 가능하도록 디렉토리 구성 (`/python/`, `/java/` 등)
+
+<br>
+
+<details>
+  <summary> Python vs Java</summary>
+  
+#### ✅ Python vs Java: 코딩테스트 언어 비교
+| 항목               | 🐍 Python                                          | ☕ Java                                                     |
+| ---------------- | -------------------------------------------------- | ---------------------------------------------------------- |
+| **작성 속도**        | **매우 빠름** – 문법이 간결하고 타입 선언 불필요                     | 느림 – 타입 선언, 클래스 구조 필요                                      |
+| **자료구조 사용**      | 내장 자료형 (`dict`, `set`, `heapq`, `collections`) 풍부  | `HashMap`, `PriorityQueue`, `Deque` 등 명시적 import와 타입 지정 필요 |
+| **문법 직관성**       | **높음** – `for x in list`, `if x in set`처럼 자연스럽다    | 상대적으로 복잡 – 반복문, 조건문 등이 장황함                                 |
+| **입출력 처리**       | 기본 `input()`은 느림 (⇒ `sys.stdin.readline()` 필요)     | 기본 `Scanner`는 느림 (⇒ `BufferedReader` 권장)                   |
+| **정확한 시간 제어**    | 느릴 수 있음 – 대형 입력에서는 TLE가 발생하기 쉬움                    | 상대적으로 빠름 – JVM 오버헤드는 있으나 전반적으로 안정적                         |
+| **라이브러리/알고리즘**   | `math`, `itertools`, `bisect`, `heapq` 등 유용한 도구 다수 | 알고리즘은 직접 구현하는 경우가 많음                                       |
+| **언어 제한** (플랫폼별) | 일부 기업에서는 **Java/C++만 허용**                          | 거의 모든 플랫폼에서 사용 가능                                          |
+| **정수 범위**        | 자동으로 BigInteger 처리 (Overflow 없음)                   | `int` vs `long` 구분 필요, overflow 주의                         |
+| **디버깅/IDE 지원**   | 간단한 디버깅은 쉬우나 대규모 개발에는 IDE 의존도 낮음                   | IDE 지원(예: IntelliJ) 매우 우수 – 디버깅과 리팩토링에 강함                  |
+| **코드 스타일**       | 짧고 간결한 구현 → 시간 절약                                  | 명시적이고 안정적인 구현 → 실수 적음                                      |
+
+#### ✅ Python vs Java: 코딩테스트 언어 비교
+| 상황                                            | 추천 언어             |
+| --------------------------------------------- | ----------------- |
+| 시간이 **매우 촉박**한 1\~2문제 테스트 (예: 삼성, 네이버 1차 테스트) | **Python**        |
+| 대형 기업에서의 **대규모 입력 처리** (예: 카카오, NHN)          | **Java**          |
+| 주 언어가 **Java이며 기본기에 강한 편**                    | **Java 유지 권장**    |
+| 파이썬이 익숙하고 **코딩에 자신 있음**                       | **Python 적극 추천**  |
+| C++에 가까운 **최적화, 정교한 메모리 컨트롤**이 필요             | 둘 다 아님 (→ C++ 추천) |
+
+#### ✅ 추천 전략
+- 시간이 부족하거나 아이디어가 핵심인 문제는 Python으로 빠르게 작성
+- 시간 제한이 빡빡하거나 대용량 입출력/정밀도 이슈가 있으면 Java 활용
+- 이미 Java에 익숙하시다면, Python은 세컨드 언어로 풀이 연습용으로만 활용하고, 실전은 Java로 유지해도 좋습니다.
+
+</details>
+
+
+
+<details>
+  <summary> 풀이 예제 </summary>
+  
+#### ✅ 문제: 3. Longest Substring Without Repeating Characters (Medium)
+- Given a string s, find the length of the longest substring without repeating characters.
+
+#### ✅ 핵심 아이디어 (Sliding Window)
+- **Two pointers (left, right)**를 사용해 슬라이딩 윈도우 범위를 유지
+- 중복 문자가 없을 때까지 윈도우 확장, 중복이 생기면 왼쪽 포인터를 줄이며 제거
+- 각 단계마다 최대 길이를 업데이트
+
+#### ✅ Python 풀이 (with full English comments)
+
+    def lengthOfLongestSubstring(s: str) -> int:
+        # Dictionary to store the last seen index of each character
+        last_seen = {}
+
+    # Initialize two pointers for the sliding window
+    left = 0  # Left boundary of the current window
+    max_length = 0  # Maximum length of substring without repeating characters
+
+    # Iterate over each character in the string using the right pointer
+    for right, char in enumerate(s):
+        # If the character is already in the window (and its index >= left),
+        # move the left pointer to the right of the previous occurrence
+        if char in last_seen and last_seen[char] >= left:
+            left = last_seen[char] + 1  # shrink the window from the left
+
+        # Update the character's last seen index
+        last_seen[char] = right
+
+        # Calculate the current window length and update max_length if needed
+        current_window_length = right - left + 1
+        max_length = max(max_length, current_window_length)
+
+    return max_length
+
+#### ✅ Java 풀이 (with full English comments)
+    import java.util.HashMap;
+    
+    public class Solution {
+        public int lengthOfLongestSubstring(String s) {
+            // Map to store the last seen index of each character
+            HashMap<Character, Integer> lastSeen = new HashMap<>();
+
+        int left = 0; // Left boundary of the sliding window
+        int maxLength = 0; // Maximum length of non-repeating substring
+
+        for (int right = 0; right < s.length(); right++) {
+            char currentChar = s.charAt(right);
+
+            // If the character was seen and is within the current window
+            if (lastSeen.containsKey(currentChar) && lastSeen.get(currentChar) >= left) {
+                // Move the left pointer to the right of the last seen position
+                left = lastSeen.get(currentChar) + 1;
+            }
+
+            // Update the last seen position of the current character
+            lastSeen.put(currentChar, right);
+
+            // Calculate window length and update maxLength
+            int currentWindowLength = right - left + 1;
+            maxLength = Math.max(maxLength, currentWindowLength);
+        }
+
+        return maxLength;
+      }
+    }
+
+
+
+</details>
 
 <br>
 
